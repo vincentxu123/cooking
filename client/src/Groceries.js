@@ -55,20 +55,20 @@ const Groceries = () => {
                 </ul>
             </div>
             <form onSubmit={handleSubmit}>
-                    <label> New Item: </label>
-                    <input type="text" name="name" onChange={(e) => setNewItem(e.target.value)} style={{backgroundColor: 'white'}}/>
-                    <label> Quantity: </label>
-                    <input type="text" name="quantity" onChange={(e) => setNewQuantity(e.target.value)} style={{backgroundColor: 'white'}}/>
-                    <select onChange={(e) => setNewMeasurement(e.target.value)} style={{backgroundColor: 'white'}}>
-                        <option defaultValue="amount" style={{backgroundColor: 'white'}}>Amount</option>
-                        <option value="grams" style={{backgroundColor: 'white'}}>Grams</option>
-                        <option value="cups" style={{backgroundColor: 'white'}}>Cups</option>
-                        <option value="teaspoons" style={{backgroundColor: 'white'}}>Teaspoons</option>
-                        <option value="mL" style={{backgroundColor: 'white'}}>mL</option>
-                        <option value="pounds" style={{backgroundColor: 'white'}}>Pounds</option>
-                        </select>
-                    <input type="submit" value="Submit" style={{backgroundColor: 'white'}}/>
-                </form>
+                <label> New Item: </label>
+                <input type="text" name="name" onChange={(e) => setNewItem(e.target.value)} style={{backgroundColor: 'white'}}/>
+                <label> Quantity: </label>
+                <input type="text" name="quantity" onChange={(e) => setNewQuantity(e.target.value)} style={{backgroundColor: 'white'}}/>
+                <select onChange={(e) => setNewMeasurement(e.target.value)} style={{backgroundColor: 'white'}}>
+                    <option defaultValue="amount" style={{backgroundColor: 'white'}}>Amount</option>
+                    <option value="grams" style={{backgroundColor: 'white'}}>Grams</option>
+                    <option value="cups" style={{backgroundColor: 'white'}}>Cups</option>
+                    <option value="teaspoons" style={{backgroundColor: 'white'}}>Teaspoons</option>
+                    <option value="mL" style={{backgroundColor: 'white'}}>mL</option>
+                    <option value="pounds" style={{backgroundColor: 'white'}}>Pounds</option>
+                </select>
+                <input type="submit" value="Submit" style={{backgroundColor: 'white'}}/>
+            </form>
         </div>
     )
 }
