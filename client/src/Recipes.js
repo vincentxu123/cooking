@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Recipes = () => {
 
-    const [users, setUsers] = useState([
-        { id: 1, firstName: 'Frank', lastName: 'Murphy', email: 'frank.murphy@test.com'},
-        { id: 2, firstName: 'Vic', lastName: 'Reynolds', email: 'vic.reynolds@test.com'},
-        { id: 3, firstName: 'Gina', lastName: 'Jabowski', email: 'gina.jabowski@test.com'},
-        { id: 4, firstName: 'Jessi', lastName: 'Glaser', email: 'jessi.glaser@test.com'},
-        { id: 5, firstName: 'Jay', lastName: 'Bilzerian', email: 'jay.bilzerian@test.com'}
-    ]);
+    const [recipes, setRecipes] = useState([]);
+
+    useEffect(() => {
+        fetch("/recipes").then((res) => res.json()).then((data) => {
+          setRecipes(data);
+        })
+    }, []);
 
     return (
         <div className="container">
@@ -21,10 +21,17 @@ const Recipes = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {users && users.map(user =>
-                        <tr key={user.id}>
-                            <td> {user.firstName} {user.lastName} </td>
-                            <td> {user.email} </td>
+                    {recipes && recipes.map(recipe =>
+                        <tr key={recipe.id}>
+                            <td> {recipe.name}</td>
+                            <td> 
+                                <ul>
+                                    {Object.keys(recipe.ingredients).map((key) => {
+                                        console.log(key);
+                                        return <li key={key}>{key}: {recipe.ingredients[key]}</li>
+                                    })}
+                                </ul>
+                            </td>
                         </tr>
                     )}
                 </tbody>

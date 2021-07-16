@@ -11,6 +11,7 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 
 var Groceries = require('./db/grocercies.js');
+var Recipes = require('./db/recipes.js');
 var mongoose = require('mongoose');
 
 // connect to mongodb
@@ -25,6 +26,12 @@ app.get("/groceries", (req, res) => {
     Groceries.find().then((result) => {
       res.json(result);
     })
+})
+
+app.get("/recipes", (req, res) => {
+  Recipes.find().then((result) => {
+    res.json(result);
+  })
 })
 
 app.post("/newgroceries", (req, res) => {
