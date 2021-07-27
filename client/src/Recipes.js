@@ -50,7 +50,6 @@ const Recipes = () => {
                             <td> 
                                 <ul>
                                     {Object.keys(recipe.ingredients).map((key) => {
-                                        console.log(key);
                                         return <li key={key}>{key}: {recipe.ingredients[key]}</li>
                                     })}
                                 </ul>
