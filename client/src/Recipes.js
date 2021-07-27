@@ -13,23 +13,23 @@ const Recipes = () => {
 
     // handle input change
     const handleInputChange = (e, index) => {
-        const { ingredientName, quantity, measurement } = e.target;
+        const value = e.target.value;
         const list = [...inputList];
-        list[index]['ingredientName'] = ingredientName;
-        list[index]['quantity'] = quantity;
-        list[index]['measurement'] = measurement;
+        list[index][e.target.name] = value;
         setInputList(list);
     };
     
     // handle click event of the Remove button
-    const handleRemoveClick = index => {
+    const handleRemoveClick = (e, index) => {
+        e.preventDefault();
         const list = [...inputList];
         list.splice(index, 1);
         setInputList(list);
     };
     
     // handle click event of the Add button
-    const handleAddClick = () => {
+    const handleAddClick = (e) => {
+        e.preventDefault();
         setInputList([...inputList, { ingredientName: "", quantity: "", measurement: 'Amount' }]);
     };
 
@@ -64,32 +64,39 @@ const Recipes = () => {
             <form>
                 <label> Name: </label>
                 <input type="text" name="name" style={{backgroundColor: 'white'}}/>
+                {inputList.map((x, i) => {
+                    return (
+                        <div>
+                            <br></br>
+                            <label> Ingredient Name: </label>
+                            <input type="text" name="ingredientName" value={x.ingredientName} style={{backgroundColor: 'white'}} onChange={e => handleInputChange(e, i)}/>
+                            <label> Quantity: </label>
+                            <input type="text" name="quantity" value={x.quantity} style={{backgroundColor: 'white'}} onChange={e => handleInputChange(e, i)}/>
+                            &nbsp;
+                            <select name="measurement" value={x.measurement} style={{backgroundColor: 'white'}} onChange={e => handleInputChange(e, i)}>
+                                <option defaultValue="amount" style={{backgroundColor: 'white'}}>Amount</option>
+                                <option value="grams" style={{backgroundColor: 'white'}}>Grams</option>
+                                <option value="cups" style={{backgroundColor: 'white'}}>Cups</option>
+                                <option value="teaspoons" style={{backgroundColor: 'white'}}>Teaspoons</option>
+                                <option value="mL" style={{backgroundColor: 'white'}}>mL</option>
+                                <option value="pounds" style={{backgroundColor: 'white'}}>Pounds</option>
+                            </select>
+                            &nbsp;
+                            <button style={{backgroundColor: 'white'}} onClick={e => handleAddClick(e)}> Add </button>
+                            &nbsp;
+                            <button style={{backgroundColor: 'white'}} onClick={e => handleRemoveClick(e, i)}> Remove </button>
+                            
+                        </div>        
+                    )
+                })}
                 <p>
-                    <label> Ingredient Name: </label>
-                    <input type="text" name="ingredient" style={{backgroundColor: 'white'}}/>
-                    <label> Quantity: </label>
-                    <input type="text" name="quantity" style={{backgroundColor: 'white'}}/>
-                    &nbsp;
-                    <select style={{backgroundColor: 'white'}}>
-                        <option defaultValue="amount" style={{backgroundColor: 'white'}}>Amount</option>
-                        <option value="grams" style={{backgroundColor: 'white'}}>Grams</option>
-                        <option value="cups" style={{backgroundColor: 'white'}}>Cups</option>
-                        <option value="teaspoons" style={{backgroundColor: 'white'}}>Teaspoons</option>
-                        <option value="mL" style={{backgroundColor: 'white'}}>mL</option>
-                        <option value="pounds" style={{backgroundColor: 'white'}}>Pounds</option>
-                    </select>
-                    &nbsp;
-                    <button style={{backgroundColor: 'white'}}> Add </button>
-                    &nbsp;
-                    <button style={{backgroundColor: 'white'}}> Remove </button>
-                    <p>
-                        <input type="submit" value="Submit" style={{backgroundColor: 'white'}}/>
-                    </p>
-                </p>          
+                    <input type="submit" value="Submit" style={{backgroundColor: 'white'}}/>
+                </p>
+                {
+                    console.log(inputList)
+                }
             </form>
 
-            
-            
         </div>
     )
 }
