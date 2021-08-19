@@ -44,10 +44,25 @@ app.post("/newgroceries", (req, res) => {
 app.post("/deletegrocery", (req, res) => {
   Groceries.findByIdAndDelete(req.body._id, (err, data) => {
     if (!err) {
-      console.log("Deleted " + req.body.name + " from list");
+      console.log("Deleted " + req.body.name + " from grocery list");
     }
   });
-  
+  res.json({message: "Success"});
+})
+
+app.post("/newrecipe", (req, res) => {
+  const item = req.body;
+  const recipe = new Recipes(item);
+  recipe.save();
+  res.json({message: "Success"});
+})
+
+app.post("/deleterecipe", (req, res) => {
+  Recipes.findByIdAndDelete(req.body._id, (err, data) => {
+    if (!err) {
+      console.log("Deleted " + req.body.name + " from recipe list");
+    }
+  });
   res.json({message: "Success"});
 })
 

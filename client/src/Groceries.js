@@ -24,7 +24,7 @@ const Groceries = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newGrocery)
         }).then(() => {
-            history.push('/');
+            history.push('/groceries');
             window.location.reload();
         })
     }
@@ -35,11 +35,12 @@ const Groceries = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         }).then(() => {
-            history.push('/');
+            history.push('/groceries');
             window.location.reload();
         });
     }
 
+    // Note: Make sure quantity is a number, not a string
     return (
         <div>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
